@@ -3,6 +3,7 @@ package com.devsuperior.pesquisa.service;
 import java.time.Instant;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,6 +36,11 @@ public class RecordService {
 		
 		entity = repository.save(entity);
 		return new RecordDTO(entity);
+	}
+
+	@Transactional
+	public Page<Record> findByMoments(Instant minDate, Instant maxDate, org.springframework.data.domain.Pageable pageRequest) {
+		return repository.findByMoments(minDate, maxDate, pageRequest);
 	}
 	
 	
