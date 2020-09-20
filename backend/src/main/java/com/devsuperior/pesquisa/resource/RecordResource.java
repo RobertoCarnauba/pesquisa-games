@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.devsuperior.pesquisa.dto.RecordDTO;
 import com.devsuperior.pesquisa.dto.RecordInsertDTO;
-import com.devsuperior.pesquisa.entities.Record;
 import com.devsuperior.pesquisa.service.RecordService;
 
 @RestController
@@ -32,7 +31,7 @@ public class RecordResource {
 	}
 	
 	@GetMapping
-	public ResponseEntity<Page<Record>> findAll(
+	public ResponseEntity<Page<RecordDTO>> findAll(
 			@RequestParam(value = "min", defaultValue = "") String min,
 			@RequestParam(value = "max", defaultValue = "") String max,
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
@@ -49,7 +48,7 @@ public class RecordResource {
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		
-		Page<Record> list = service.findByMoments(minDate, maxDate, pageRequest);
+		Page<RecordDTO> list = service.findByMoments(minDate, maxDate, pageRequest);
 		return ResponseEntity.ok().body(list);
 	}
 }

@@ -39,7 +39,7 @@ public class RecordService {
 	}
 
 	@Transactional
-	public Page<Record> findByMoments(Instant minDate, Instant maxDate, org.springframework.data.domain.Pageable pageRequest) {
+	public Page<RecordDTO> findByMoments(Instant minDate, Instant maxDate, org.springframework.data.domain.Pageable pageRequest) {
 		return repository.findByMoments(minDate, maxDate, pageRequest);
 	}
 	
